@@ -35,9 +35,24 @@ AFPSProjectile::AFPSProjectile()
 void AFPSProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
 	// Only add impulse and destroy projectile if we hit a physics
-	if ((OtherActor != NULL) && (OtherActor != this) && (OtherComp != NULL) && OtherComp->IsSimulatingPhysics())
+	if ((OtherActor != nullptr) && (OtherActor != this) && (OtherComp != nullptr) && OtherComp->IsSimulatingPhysics())
 	{
+		// impact of hit on the component that is hit
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());
+		
+		// reduce scale of the component that is hit
+		FVector Scale = OtherComp->GetComponentScale();
+		Scale *= 0.8f;
+
+		// if the smallest measurement of the scale is "small enough" 0.5f, destory the other actor
+		if (Scale.GetMin() < 0.5f)
+		{
+			OtherActor->Destroy();
+		}
+		else
+		{
+			OtherComp->SetWorldScale3D(Scale);
+		}
 
 		Destroy();
 	}
