@@ -3,6 +3,8 @@
 #include "FPSProjectile.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
+// needs to be added to include the correct class, outside of tutorial
+#include "Runtime/Engine/Classes/Materials/MaterialInstanceDynamic.h"
 
 AFPSProjectile::AFPSProjectile() 
 {
@@ -52,6 +54,12 @@ void AFPSProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPr
 		else
 		{
 			OtherComp->SetWorldScale3D(Scale);
+		}
+
+		UMaterialInstanceDynamic* MatInst = OtherComp->CreateAndSetMaterialInstanceDynamic(0);
+		if (MatInst)
+		{
+			MatInst->SetVectorParameterValue("Color", FLinearColor::MakeRandomColor());
 		}
 
 		Destroy();
