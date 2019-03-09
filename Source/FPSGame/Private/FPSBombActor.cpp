@@ -31,6 +31,7 @@ void AFPSBombActor::Explode()
 
 	FCollisionObjectQueryParams QueryParams;
 	QueryParams.AddObjectTypesToQuery(ECC_WorldDynamic);
+	QueryParams.AddObjectTypesToQuery(ECC_PhysicsBody);
 
 	FCollisionShape CollShape;
 	CollShape.SetSphere(500.0f);
