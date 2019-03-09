@@ -12,7 +12,8 @@ class UCameraComponent;
 class AFPSProjectile;
 class USoundBase;
 class UAnimSequence;
-
+// forward declaring custom BombActor class for compiler
+//class FPSBombActor;
 
 UCLASS()
 class AFPSCharacter : public ACharacter
@@ -40,7 +41,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="Projectile")
 	TSubclassOf<AFPSProjectile> ProjectileClass;
 
-	/** Adding custom bomb class */
+	/** Adding custom bomb class, UPROP exposes to UR4 */
 	UPROPERTY(EditDefaultsOnly, Category="Bombs")
 	TSubclassOf<AActor> BombClass;
 

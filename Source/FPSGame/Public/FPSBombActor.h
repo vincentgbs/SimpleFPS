@@ -16,6 +16,16 @@ public:
 	AFPSBombActor();
 
 protected:
+	UPROPERTY(EditDefaultsOnly, Category = "BombActor")
+	float ExplodeDelay;
+
+	UPROPERTY(EditDefaultsOnly, Category = "BombActor")
+	UParticleSystem* ExplosionTemplate;
+
+	UFUNCTION()
+	void Explode();
+
+protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
