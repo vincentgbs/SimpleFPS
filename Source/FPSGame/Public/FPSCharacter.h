@@ -40,6 +40,10 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="Projectile")
 	TSubclassOf<AFPSProjectile> ProjectileClass;
 
+	/** Adding custom bomb class */
+	UPROPERTY(EditDefaultsOnly, Category="Bombs")
+	TSubclassOf<AActor> BombClass;
+
 	/** Sound to play each time we fire */
 	UPROPERTY(EditDefaultsOnly, Category="Gameplay")
 	USoundBase* FireSound;
@@ -52,6 +56,9 @@ protected:
 	
 	/** Fires a projectile. */
 	void Fire();
+
+	/** Adding out custom bomb */
+	void SpawnBomb();
 
 	/** Handles moving forward/backward */
 	void MoveForward(float Val);
